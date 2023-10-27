@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popup Chat Window</title>
+    <script src="https://kit.fontawesome.com/d8bd919f93.js" crossorigin="anonymous"></script>
+    <style>
+        /* Button used to open the chat form - fixed at the bottom of the page */
+        .open-button {
+            padding: 10px 40px;
+            background-color: #04AA6D;
+            color: white;
+            font-size: 17px;
+            max-width: 300px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+            transition: opacity 0.5s;
+            /* Agregar una transición de 0.5 segundos */
+
+        }
+
+        /* The popup chat - hidden by default */
+        .chat-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            z-index: 9;
+        }
+
+        /* Add styles to the form container */
+        .form-container {
+            max-width: 300px;
+            padding: 10px;
+            border-radius: 20px;
+            background-color: #f7f7f7;
+            color: #333;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Full-width textarea */
+        .form-container textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            border-radius: 20px;
+            background: #eee;
+            resize: none;
+            min-height: 200px;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        /* When the textarea gets focus, do something */
+        .form-container textarea:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        /* Set a style for the submit/send button */
+        .form-container .btn {
+            background-color: #04AA6D;
+            color: white;
+            font-size: 17px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+            background-color: #d9534f;
+        }
+
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover,
+        .open-button:hover {
+            opacity: 0.8;
+        }
+
+        .questions-container {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .questions-container a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            margin: 10px 0;
+            transition: color 0.3s;
+        }
+
+        .questions-container a:hover {
+            color: #04AA6D;
+        }
+
+        .contenedorxd {
+            background-color: rebeccapurple;
+            width: 100%;
+            height: 2000px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="open-button" id="chatButton" onclick="openForm()">Chat</button>
+    <div class="contenedorxd">
+        <h2 style="color: white; padding-top: 300px; text-align: center;">Asistente para Preguntas frecuentes</h2>
+        <h3 style="color: white; text-align: center;">Al presionar Fuera del Asistente se Cerrara</h3>
+        <h3 style="color: white; text-align: center;">Totalmente Responsivo y Funcionara en cualquier pagina solo
+            copiando y pegando</h3>
+    </div>
+    <div class="chat-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <i class="fa-solid fa-chalkboard-user"></i>
+            <h3>Chatea con Nosotros</h3>
+            <div class="chat-container">
+                <div class="chat-text">
+                    <textarea id="msg" placeholder="Esperando tu Mensaje.." name="msg" readonly></textarea>
+                </div>
+                <div class="chat-sidebar">
+                    <div class="questions-container">
+                        <a href="#" onclick="displayAnswer(1); return false;">¿Qué servicios ofrece Soft-Brain?</a>
+                        <a href="#" onclick="displayAnswer(2); return false;">¿Qué implica el Servicio Técnico de
+                            Soft-Brain?</a>
+                        <a href="#" onclick="displayAnswer(3); return false;">En qué consiste la Ampliación de RAM?</a>
+                        <a href="#" onclick="displayAnswer(4); return false;">¿Qué implica el Reemplazo de Disco Duro
+                            por SSD?</a>
+                        <a href="#" onclick="displayAnswer(5); return false;">¿En qué consiste la Limpieza y
+                            Mantenimiento de Soft-Brain?</a>
+                        <a href="#" onclick="displayAnswer(6); return false;">¿Qué significa la Optimización de Software
+                            de Soft-Brain?</a>
+                        <a href="#" onclick="displayAnswer(7); return false;">¿Ofrecen Eliminación de Virus y
+                            Malware?</a>
+                        <a href="#" onclick="displayAnswer(8); return false;">¿Cuáles son los servicios de Configuración
+                            de Red de Soft-Brain?</a>
+                        <a href="#" onclick="displayAnswer(9); return false;">¿Qué incluye el Respaldo de Datos de
+                            Soft-Brain?</a>
+                        <a href="#" onclick="displayAnswer(10); return false;">¿En qué consiste la Reparación de
+                            Software de Soft-Brain?</a>
+                        <a href="#" onclick="displayAnswer(11); return false;">¿Qué estrategias de marketing ofrece
+                            Soft-Brain?</a>
+                        <a href="#" onclick="displayAnswer(12); return false;">¿Qué implica la Publicidad en Redes
+                            Sociales de Soft-Brain?</a>
+                        <a href="#" onclick="displayAnswer(13); return false;">>¿Qué servicios de Email Marketing
+                            proporciona Soft-Brain?</a>
+                        <a href="#" onclick="displayAnswer(14); return false;">¿Cuáles son los servicios de SEO y
+                            Optimización de Contenido de Soft-Brain?</a>
+                        <a href="#" onclick="displayAnswer(15); return false;">¿En qué consiste el Marketing de
+                            Contenidos de Soft-Brain?</a>
+                        <a href="#" onclick="displayAnswer(16); return false;">¿Qué servicios de Creación de Páginas Web
+                            ofrece Soft-Brain?</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
+        </form>
+    </div>
+
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+
+        function displayAnswer(questionNumber) {
+            var questions = [
+                "¿Qué servicios ofrece Soft-Brain?",
+                "¿Qué implica el Servicio Técnico de Soft-Brain?",
+                "¿En qué consiste la Ampliación de RAM?",
+                "¿Qué implica el Reemplazo de Disco Duro por SSD?",
+                "¿En qué consiste la Limpieza y Mantenimiento de Soft-Brain?",
+                "¿Qué significa la Optimización de Software de Soft-Brain?",
+                "¿Ofrecen Eliminación de Virus y Malware?",
+                "¿Cuáles son los servicios de Configuración de Red de Soft-Brain?",
+                "¿Qué incluye el Respaldo de Datos de Soft-Brain?",
+                "¿En qué consiste la Reparación de Software de Soft-Brain?",
+                "¿Qué estrategias de marketing ofrece Soft-Brain?",
+                "¿Qué implica la Publicidad en Redes Sociales de Soft-Brain?",
+                "¿Qué servicios de Email Marketing proporciona Soft-Brain?",
+                "¿Cuáles son los servicios de SEO y Optimización de Contenido de Soft-Brain?",
+                "¿En qué consiste el Marketing de Contenidos de Soft-Brain?",
+                "¿Qué servicios de Creación de Páginas Web ofrece Soft-Brain?",
+
+            ];
+
+            var answers = [
+                "Soft-Brain ofrece una amplia gama de servicios tecnológicos, incluyendo Servicio Técnico, Estrategias de Marketing y Creación de Páginas Web personalizadas.",
+                "Nuestro Servicio Técnico aborda problemas de software y hardware en sus dispositivos. Nuestro equipo de expertos solucionará problemas técnicos y ofrecerá mantenimiento preventivo.",
+                "La Ampliación de RAM implica aumentar la cantidad de memoria RAM en sus computadoras. Esto mejora el rendimiento y la capacidad multitarea de sus dispositivos.",
+                "El Reemplazo de Disco Duro por SSD implica cambiar discos duros tradicionales por unidades de estado sólido (SSD) de alta velocidad, lo que mejora el rendimiento y la velocidad de inicio de sus dispositivos.",
+                "La Limpieza y Mantenimiento incluye la eliminación de polvo y la verificación de la ventilación en sus dispositivos para evitar el sobrecalentamiento y prolongar su vida útil.",
+                "La Optimización de Software implica limpiar y optimizar sistemas operativos, eliminando software no deseado y mejorando el rendimiento general de sus dispositivos.",
+                "Sí, Soft-Brain ofrece servicios de Eliminación de Virus y Malware para garantizar la seguridad de sus dispositivos y datos.",
+                "Nuestros servicios de Configuración de Red optimizan la conectividad de dispositivos, incluyendo la instalación y configuración de routers, switchs y conexiones Wi-Fi.",
+                "El Respaldo de Datos de Soft-Brain incluye copias de seguridad regulares de sus datos importantes, garantizando la seguridad y accesibilidad de su información.",
+                "La Reparación de Software de Soft-Brain aborda problemas con el sistema operativo, aplicaciones y programas, asegurando el funcionamiento sin interrupciones de sus dispositivos.",
+                "Soft-Brain ofrece estrategias de marketing, incluyendo Publicidad en Redes Sociales, Email Marketing, SEO y Optimización de Contenido, y Marketing de Contenidos.",
+                "La Publicidad en Redes Sociales implica la creación y gestión de campañas publicitarias efectivas en plataformas de redes sociales para aumentar la visibilidad de su marca.",
+                "Nuestros servicios de Email Marketing ayudan a diseñar estrategias efectivas para llegar a sus clientes con contenido relevante y promociones especiales.",
+                "Los servicios de SEO y Optimización de Contenido de Soft-Brain mejoran el contenido de su sitio web y su clasificación en los motores de búsqueda para aumentar el tráfico orgánico.",
+                "El Marketing de Contenidos se centra en la creación de contenido relevante y valioso para atraer a su audiencia y fortalecer su presencia en línea.",
+                "Los servicios de Creación de Páginas Web de Soft-Brain incluyen el Diseño de Sitios Web Personalizados que se adaptan a sus necesidades y reflejan la identidad de su marca.",
+
+            ];
+
+            var msgTextarea = document.getElementById("msg");
+            var question = questions[questionNumber - 1]; // Resta 1 al índice
+            var answer = answers[questionNumber - 1]; // Resta 1 al índice
+            var chatText = msgTextarea.value;
+
+            // Agregar la pregunta y respuesta al textarea
+            chatText += "Pregunta: " + question + "\n\n";
+            chatText += "Respuesta: " + answer + "\n\n";
+
+            // Actualizar el contenido del textarea
+            msgTextarea.value = chatText;
+            msgTextarea.scrollTop = msgTextarea.scrollHeight;
+        }
+
+        window.onscroll = function () {
+            var chatButton = document.getElementById("chatButton");
+            if (window.scrollY >= 700) {
+                chatButton.style.display = "none"; // Ocultar el botón
+            } else {
+                chatButton.style.display = "block"; // Mostrar el botón
+            }
+        };
+        window.onscroll = function () {
+            var chatButton = document.getElementById("chatButton");
+            if (window.scrollY >= 400) {
+                chatButton.style.opacity = "0";
+            } else {
+                chatButton.style.opacity = "1";
+            }
+        };
+        var questionContainer = document.querySelector('.questions-container');
+        questionContainer.addEventListener('click', function (event) {
+            event.stopPropagation(); // Evitar la propagación del evento al documento
+        });
+
+        document.addEventListener('click', function (event) {
+            var chatPopup = document.getElementById('myForm');
+            var chatButton = document.getElementById('chatButton');
+            if (event.target !== chatPopup && event.target !== chatButton) {
+                chatPopup.style.display = 'none';
+            }
+        });
+
+
+        var chatPopup = document.getElementById('myForm');
+        var chatButton = document.getElementById('chatButton');
+
+        chatPopup.addEventListener('click', function (event) {
+            event.stopPropagation(); // Evitar la propagación del evento al documento
+        });
+
+        document.addEventListener('click', function (event) {
+            if (event.target !== chatPopup && event.target !== chatButton) {
+                chatPopup.style.display = 'none';
+            }
+        });
+        var questionLinks = document.querySelectorAll('.questions-container a');
+        questionLinks.forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault(); // Evitar que el enlace haga una navegación
+                event.stopPropagation(); // Evitar la propagación del evento al documento
+            });
+        });
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
